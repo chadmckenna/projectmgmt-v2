@@ -1,0 +1,10 @@
+<%= turbo_frame_tag dom_id(todo) do %>
+  <%= form_with url: toggle_todo_path(todo), data: { controller: "todo" } do |form| %>
+    <%= form.check_box :complete, checked: todo.complete, id: dom_id(todo, :complete), data: { action: "todo#toggle" } %>
+    <% if todo.complete %>
+      <s><%= link_to todo.description, edit_todo_path(todo) %></s>
+    <% else %>
+      <%= link_to todo.description, edit_todo_path(todo) %>
+    <% end %>
+  <% end %>
+<% end %>

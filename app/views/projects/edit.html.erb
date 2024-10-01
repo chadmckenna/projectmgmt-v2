@@ -1,0 +1,12 @@
+<% content_for :title, "Editing project" %>
+
+<h1>Editing project</h1>
+
+<%= render "form", project: @project %>
+
+<br>
+
+<div>
+  <%= link_to "Show this project", project_path(@project) %> |
+  <%= link_to "Back to projects", client_projects_path(@project.client) %>
+</div>

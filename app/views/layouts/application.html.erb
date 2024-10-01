@@ -23,6 +23,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="container">
+      <% if authenticated? %>
+        <ul>
+          <li><strong>p-mgmt</strong></li>
+          <li><%= link_to "Clients", clients_path %></li>
+        </ul>
+        <ul>
+          <li><%= link_to "Sign Out", session_path, data: { 'turbo-method': :delete } %></li>
+        </ul>
+      <% end %>
+    </nav>
+    <main class="container">
+      <%= yield %>
+    </main>
   </body>
 </html>

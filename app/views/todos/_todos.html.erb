@@ -1,0 +1,4 @@
+<%= render "todos/form", todoable: todoable, todo: Todo.new %>
+<%= turbo_frame_tag "todos" do %>
+  <%= render partial: "todos/todo", collection: todos %>
+<% end %>

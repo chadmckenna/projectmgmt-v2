@@ -1,0 +1,30 @@
+<article id="<%= dom_id client %>">
+  <div class="grid">
+    <h2>
+      <strong><%= client.name %></strong>
+    </h2>
+    <%= link_to "+ Add Project", new_client_project_path(client) %>
+  </div>
+
+  <details>
+    <summary>Client notes</summary>
+    <p>
+      <%= client.notes %>
+    </p>
+  </details>
+
+  <details>
+    <summary>Projects</summary>
+    <ul>
+      <% client.projects.each do |project| %>
+        <li><%= link_to project.name, project %></li>
+      <% end %>
+    <ul>
+  </details>
+
+  <details>
+    <summary>Todos</summary>
+    <%= render 'todos/todos', todos: client.todos, todoable: client %>
+  </details>
+
+</article>
