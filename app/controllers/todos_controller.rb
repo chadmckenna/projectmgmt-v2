@@ -1,6 +1,6 @@
 class TodosController < ApplicationController
   before_action :set_todoable, only: %i[ index new create ]
-  before_action :set_todo, only: %i[ show edit update destroy toggle_complete ]
+  before_action :set_todo, only: %i[ show edit update destroy ]
 
   def index
     @todos = @todoable.todos
@@ -38,18 +38,6 @@ class TodosController < ApplicationController
       if @todo.update(todo_params)
         format.html { redirect_to @todo, notice: "Todo was successfully updated." }
         format.json { render :show, status: :ok, location: @todo }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def toggle_complete
-    respond_to do |format|
-      if @todo.update(complete: !@todo.complete)
-        format.html { redirect_to @todo, notice: "Todo was marked #{@todo.complete ? 'complete' : 'to-do'}" }
-        format.json { render :show, status: :ok, location: @todo.todoable }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @todo.errors, status: :unprocessable_entity }

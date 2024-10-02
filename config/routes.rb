@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  post "todos/:id/toggle", to: "todos#toggle_complete", as: "toggle_todo"
-
   resources :clients, shallow: true do
     resources :todos, module: "client"
 
